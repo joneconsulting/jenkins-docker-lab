@@ -35,7 +35,7 @@ docker compose exec jenkins cat /var/jenkins_home/.kube/config | grep server
    ```powershell
    New-Item -ItemType Directory -Force -Path .kubeconfig-container | Out-Null
    (Get-Content "$env:USERPROFILE\.kube\config") `
-     -replace 'kubernetes\.docker\.internal', 'host.docker.internal' |
+     -replace '127.0.0.1', 'host.docker.internal' |
      Set-Content .kubeconfig-container\config
 
    "KUBE_CONFIG_PATH=$((Resolve-Path .kubeconfig-container\config).Path)" |

@@ -1,4 +1,4 @@
-# 실습 환경 연결 상태 점검 (Windows PowerShell)
+﻿# 실습 환경 연결 상태 점검 (Windows PowerShell)
 Write-Host "1) 호스트에서 클러스터 접속 확인"
 kubectl --context docker-desktop cluster-info
 

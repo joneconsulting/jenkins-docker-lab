@@ -1,4 +1,4 @@
-# Windows (PowerShell) 용 — Jenkins(Docker) + Docker Desktop Kubernetes 실습 환경 준비
+﻿# Windows (PowerShell) 용 — Jenkins(Docker) + Docker Desktop Kubernetes 실습 환경 준비
 $ErrorActionPreference = "Stop"
 
 Write-Host "1) Docker 동작 확인"
