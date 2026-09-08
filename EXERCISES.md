@@ -48,7 +48,11 @@ git push
 ```bash
 bash setup-mac.sh
 ```
-(Windows는 `.\setup-windows.ps1`)
+
+```Windows Powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\setup-windows.ps1
+```
 
 내부적으로 다음을 자동으로 합니다: Docker 상태 확인 → `.env` 파일 생성 →
 dev/staging/production 네임스페이스 생성 → 이미지 빌드 → 컨테이너 기동.
@@ -80,6 +84,10 @@ bash argocd/install-argocd.sh
 나중에 다시 확인하려면:
 ```bash
 kubectl --context docker-desktop -n argocd get secret argocd-initial-admin-secret \
+  -o jsonpath='{.data.password}' | base64 -d
+
+(Windows Powershell)
+kubectl --context docker-desktop -n argocd get secret argocd-initial-admin-secret `
   -o jsonpath='{.data.password}' | base64 -d
 ```
 
@@ -230,6 +238,12 @@ kubectl --context docker-desktop get deploy sample-app -n sample-app-dev --watch
 kubectl --context docker-desktop create namespace argo-rollouts
 kubectl --context docker-desktop apply --server-side -n argo-rollouts -f \
   https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+
+(Windows Powershell)
+kubectl --context docker-desktop apply --server-side -n argo-rollouts -f `
+  https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+
+
 ```
 > `--server-side`가 필요한 이유: Argo Rollouts의 CRD 정의가 커서 일반 `kubectl apply`로
 > 설치하면 Kubernetes의 annotation 크기 제한(256KB)에 걸려 다음과 같은 에러가 날 수
@@ -302,6 +316,13 @@ kubectl --context docker-desktop delete ns \
   sample-app-dev sample-app-staging sample-app-production \
   argocd argocd-demo-app rollout-demo argo-rollouts \
   --ignore-not-found
+
+(Windows Powershell)
+kubectl --context docker-desktop delete ns `
+  sample-app-dev sample-app-staging sample-app-production `
+  argocd argocd-demo-app rollout-demo argo-rollouts `
+  --ignore-not-found
+
 ```
 
 ---

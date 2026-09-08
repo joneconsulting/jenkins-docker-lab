@@ -4,7 +4,7 @@ metadata:
   name: canary-demo
   namespace: rollout-demo
 spec:
-  replicas: 4
+  replicas: 10
   strategy:
     canary:
       steps:
